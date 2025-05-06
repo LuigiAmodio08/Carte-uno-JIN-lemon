@@ -185,9 +185,6 @@ def schermata_login():
                         else:
                             inputs[i] += event.unicode
 
-# TUTTO IL RESTO DEL TUO CODICE RIMANE IDENTICO FINO A:
-# def avvia_gioco(nomi):
-# Aggiungiamo la nuova versione di questa funzione modificata:
 
 def avvia_gioco(nomi):
     mazzo = Mazzo()
@@ -224,7 +221,6 @@ def avvia_gioco(nomi):
 
                 carta_in_tavola, azione = turno(g, mazzo, carta_in_tavola, mouse, pos)
 
-                # Mostra "UNO!" se ha solo una carta
                 if len(g.mano) == 1:
                     schermo.fill(SFONDO)
                     uno_txt = pygame.font.Font(None, 72).render("UNO!", True, (255, 255, 0))
@@ -232,7 +228,7 @@ def avvia_gioco(nomi):
                     pygame.display.flip()
                     pygame.time.delay(2000)
 
-                # Controlla se il giocatore ha vinto
+             
                 if len(g.mano) == 0:
                     schermo.fill(SFONDO)
                     vincita_txt = pygame.font.Font(None, 64).render(f"{g.nome} HA VINTO!", True, (255, 255, 255))
@@ -242,7 +238,7 @@ def avvia_gioco(nomi):
                     running = False
                     break
 
-                # Gestione effetti carte speciali
+  
                 if azione in ["+4", "C.C"]:
                     scegli_colore(schermo)
                     carta_in_tavola.colore = colore_scelto
@@ -257,7 +253,6 @@ def avvia_gioco(nomi):
 
                 turno_corrente = (turno_corrente + direzione) % 3
 
-        # Disegna carte e nomi giocatori
         for i, g in enumerate(giocatori):
             nome_txt = pygame.font.Font(None, 28).render(g.nome, True, (255, 255, 255))
             if i == 0:
@@ -272,8 +267,8 @@ def avvia_gioco(nomi):
                 for j, carta in enumerate(g.mano):
                     disegna_carta(schermo, carta, 50, 150 + j * (ALTEZZA_CARTA + 5))
                 
-                nome_txt_verticale = pygame.transform.rotate(nome_txt, 90)  # Ruota il testo di 90 gradi
-                schermo.blit(nome_txt_verticale, (20, ALTEZZA // 2))  # Posiziona il nome ruotato
+                nome_txt_verticale = pygame.transform.rotate(nome_txt, 90)  
+                schermo.blit(nome_txt_verticale, (20, ALTEZZA // 2))  
         pygame.display.flip()
 
 
